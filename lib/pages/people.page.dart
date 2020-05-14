@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:yodas_knowledge/models/people.model.dart';
+import 'package:yodas_knowledge/models/root.model.dart';
 import 'package:yodas_knowledge/shared/custom_dio/custom_dio.dart';
 
 class PeoplePage extends StatefulWidget {
@@ -30,7 +31,11 @@ class _PeoplePageState extends State<PeoplePage> {
     try{
       var dio =  new CustomDio();
       var response = await  dio.get("people/");
+      RootModel rootModel = RootModel.fromJson(response.data);
       print("Testing the list ${response.data}");
+      print("Testando o root ${rootModel.count}");
+      var bla = new RootModel();
+      
     } on DioError catch (error) {
       throw(error);
     }

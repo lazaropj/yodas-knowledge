@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yodas_knowledge/pages/home.page.dart';
 import 'package:yodas_knowledge/pages/people.page.dart';
 
 void main() => runApp(MyApp());
@@ -8,11 +9,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: "Yoda's Knowledge",
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.black,
+        fontFamily: 'Starjedi'
       ),
-      home: PeoplePage(),
+      home: Home(),
     );
   }
 }

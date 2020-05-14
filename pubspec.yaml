@@ -14,11 +14,12 @@ description: Yoda´s Knowledge
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   dio: ^2.1.13
   rxdart: ^0.22.1+1
+  scoped_model: ^0.3.0
   flutter:
     sdk: flutter
 
@@ -37,6 +38,13 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - assets/images/placeholder.png
+  fonts:
+    - family: Starjedi
+      fonts:
+        - asset: assets/fonts/Starjedi.ttf
+        - asset: assets/fonts/Starjhol.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
