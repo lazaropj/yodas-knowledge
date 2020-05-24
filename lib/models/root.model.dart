@@ -2,6 +2,7 @@ class RootModel {
   int _count;
   String _next;
   String _previous;
+  String _category;
 
   RootModel({int count, String next, String previous}) {
     this._count = count;
@@ -15,6 +16,8 @@ class RootModel {
   set next(String next) => _next = next;
   String get previous => _previous;
   set previous(String previous) => _previous = previous;
+  String get category => _category;
+  set category(String value) => _category = value;
 
   RootModel.fromJson(Map<String, dynamic> json) {
     _count = json['count'];
