@@ -2,7 +2,6 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:yodas_knowledge/models/category.model.dart';
-import 'package:yodas_knowledge/models/root.model.dart';
 import 'package:yodas_knowledge/pages/root.page.dart';
 import 'package:yodas_knowledge/shared/custom_dio/custom_dio.dart';
 
@@ -15,14 +14,16 @@ class _HomeState extends State<Home> {
   List<CategoryModel> categorys = new List();
 
   Future<List<CategoryModel>> getCategory() async {
-    try {
-      var dio = new CustomDio();
-      var response = await dio.get("/");
-      response.data.forEach((key, value) {
-        categorys.add(CategoryModel(title: key, image: value));
-      });
-    } on DioError catch (error) {
-      throw (error);
+    if (categorys.isEmpty) {
+      try {
+        var dio = new CustomDio();
+        var response = await dio.get("/");
+        response.data.forEach((key, value) {
+          categorys.add(CategoryModel(title: key, image: value));
+        });
+      } on DioError catch (error) {
+        throw (error);
+      }
     }
   }
 
@@ -117,25 +118,11 @@ Widget Card(BuildContext context, CategoryModel category) {
         ],
       ),
       onTap: () {
-        getRoot(category).then((rootModel) {
-          rootModel.category = category.title;
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => RootPage(rootModel)));
-        });
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => RootPage(category)));
       },
     ),
   );
-}
-
-Future<RootModel> getRoot(CategoryModel category) async {
-  try {
-    var dio = new CustomDio();
-    var response = await dio.get("/" + category.title + "/");
-    RootModel rootModel = RootModel.fromJson(response.data);
-    return rootModel;
-  } on DioError catch (error) {
-    throw (error);
-  }
 }

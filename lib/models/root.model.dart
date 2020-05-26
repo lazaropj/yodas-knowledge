@@ -1,3 +1,5 @@
+import 'package:yodas_knowledge/models/category.model.dart';
+
 class RootModel {
   int _count;
   String _next;

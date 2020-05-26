@@ -25,10 +25,6 @@ class CardComponent extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(15, 15, 0, 0),
               child: Text(
                 "Account:. Value: ",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
               ),
             ),
           ), onPressed: () => print("Click"),
