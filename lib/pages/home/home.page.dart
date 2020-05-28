@@ -1,8 +1,9 @@
-import 'package:scoped_model/scoped_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:yodas_knowledge/models/category.model.dart';
 import 'package:yodas_knowledge/pages/root.page.dart';
+import 'package:yodas_knowledge/pages/stores/home.store.dart';
 import 'package:yodas_knowledge/shared/custom_dio/custom_dio.dart';
 
 class Home extends StatefulWidget {
@@ -12,6 +13,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoryModel> categorys = new List();
+
+  HomeStore homeStore = new HomeStore();
 
   Future<List<CategoryModel>> getCategory() async {
     if (categorys.isEmpty) {
@@ -28,41 +31,62 @@ class _HomeState extends State<Home> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    homeStore.loadCategoryList();
+
+  }
+
+
+  @override
   Widget build(BuildContext context) {
-    getCategory();
-    return ScopedModel(
-      model: CategoryModel(),
-      child: ScopedModelDescendant<CategoryModel>(
-          builder: (BuildContext context, Widget child, CategoryModel model) {
-        return SafeArea(
-          child: Scaffold(
-            appBar: AppBar(
-              title: Text("Yoda' Knowledge"),
-              actions: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    //model.setLoading(true);
-                    getCategory();
-                  },
-                  icon: Icon(
-                    Icons.refresh,
-                    color: Colors.white,
-                    size: 22.0,
-                  ),
-                ),
-              ],
+//    getCategory();
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Yoda' Knowledge"),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                //model.setLoading(true);
+                getCategory();
+              },
+              icon: Icon(
+                Icons.refresh,
+                color: Colors.white,
+                size: 22.0,
+              ),
             ),
-            body: Container(
-                child: ListView.builder(
-              itemCount: categorys.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(context, categorys[index]);
+          ],
+        ),
+        body: Container(
+            child: Observer(
+              builder: (_){
+                if(homeStore.loading){
+                  return Center(
+                    child: CircularProgressIndicator(
+                      valueColor:  AlwaysStoppedAnimation(Colors.black),
+                    ),
+                  );
+                }else if(homeStore.categoryList.isEmpty){
+                    return Center(
+                      child: Text(
+                        "Sem resultados",
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                }else{
+                  return ListView.builder(
+                    itemCount: homeStore.categoryList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(context, homeStore.categoryList[index]);
+                    },
+                  );
+                }
               },
             )),
-          ),
-        );
-      }),
-    );
+      ),
+    );;
   }
 }
 
