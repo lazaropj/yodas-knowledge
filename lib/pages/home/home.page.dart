@@ -34,13 +34,11 @@ class _HomeState extends State<Home> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     homeStore.loadCategoryList();
-
   }
 
 
   @override
   Widget build(BuildContext context) {
-//    getCategory();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -48,7 +46,6 @@ class _HomeState extends State<Home> {
           actions: <Widget>[
             IconButton(
               onPressed: () {
-                //model.setLoading(true);
                 getCategory();
               },
               icon: Icon(
@@ -112,7 +109,7 @@ Widget Card(BuildContext context, CategoryModel category) {
                   image: NetworkImage(
                     category.image,
                   ),
-                  placeholder: AssetImage('assets/images/placeholder.png'),
+                  placeholder: AssetImage('assets/images/starships.jpg'),
                 ),
                 Opacity(
                   opacity: 0.6,

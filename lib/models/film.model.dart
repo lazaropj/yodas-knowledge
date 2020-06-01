@@ -1,4 +1,6 @@
-class FilmModel {
+import 'package:yodas_knowledge/models/generic.model.dart';
+
+class FilmModel extends GenericModel {
   List<String> _characters;
   String _created;
   String _director;
@@ -108,5 +110,11 @@ class FilmModel {
     data['url'] = this._url;
     data['vehicles'] = this._vehicles;
     return data;
+  }
+
+  @override
+  void populateGenericModel() {
+    genericTitle = _title;
+    genericSubTitle = _created;
   }
 }

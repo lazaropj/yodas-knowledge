@@ -1,4 +1,6 @@
-class PeopleModel {
+import 'package:yodas_knowledge/models/generic.model.dart';
+
+class PeopleModel extends GenericModel {
   String _birthYear;
   String _created;
   String _edited;
@@ -122,5 +124,11 @@ class PeopleModel {
     data['url'] = this._url;
     data['vehicles'] = this._vehicles;
     return data;
+  }
+
+  @override
+  void populateGenericModel() {
+    genericTitle = _name;
+    genericSubTitle = _created;
   }
 }

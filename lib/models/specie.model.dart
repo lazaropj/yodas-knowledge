@@ -1,4 +1,6 @@
-class SpecieModel {
+import 'package:yodas_knowledge/models/generic.model.dart';
+
+class SpecieModel extends GenericModel {
   String _averageHeight;
   String _averageLifespan;
   String _classification;
@@ -116,5 +118,11 @@ class SpecieModel {
     data['skin_colors'] = this._skinColors;
     data['url'] = this._url;
     return data;
+  }
+
+  @override
+  void populateGenericModel() {
+    genericTitle = _name;
+    genericSubTitle = "Language: " + _language;
   }
 }

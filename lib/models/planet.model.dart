@@ -1,4 +1,6 @@
-class PlanetModel {
+import 'generic.model.dart';
+
+class PlanetModel extends GenericModel {
   String _climate;
   String _created;
   String _diameter;
@@ -108,5 +110,11 @@ class PlanetModel {
     data['terrain'] = this._terrain;
     data['url'] = this._url;
     return data;
+  }
+
+  @override
+  void populateGenericModel() {
+    genericTitle = _name;
+    genericSubTitle = "Population: " + _population;
   }
 }

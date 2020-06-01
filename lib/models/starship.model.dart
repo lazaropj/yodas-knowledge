@@ -1,4 +1,6 @@
-class StarshipModel {
+import 'package:yodas_knowledge/models/generic.model.dart';
+
+class StarshipModel extends GenericModel {
   String _mGLT;
   String _cargoCapacity;
   String _consumables;
@@ -138,5 +140,11 @@ class StarshipModel {
     data['starship_class'] = this._starshipClass;
     data['url'] = this._url;
     return data;
+  }
+
+  @override
+  void populateGenericModel() {
+    genericTitle = _name;
+    genericSubTitle = "Model: " + _model;
   }
 }

@@ -29,7 +29,7 @@ class Card extends StatelessWidget {
                     image: NetworkImage(
                       category.image,
                     ),
-                    placeholder: AssetImage('assets/images/placeholder.png'),
+                    placeholder: AssetImage('assets/images/starships.png'),
                   ),
                   Opacity(
                     opacity: 0.6,
