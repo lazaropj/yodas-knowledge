@@ -129,6 +129,6 @@ class PeopleModel extends GenericModel {
   @override
   void populateGenericModel() {
     genericTitle = _name;
-    genericSubTitle = _created;
+    genericSubTitle = "Gender: " + _gender;
   }
 }

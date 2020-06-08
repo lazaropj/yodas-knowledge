@@ -114,7 +114,8 @@ class FilmModel extends GenericModel {
 
   @override
   void populateGenericModel() {
+    id = _episodeId;
     genericTitle = _title;
-    genericSubTitle = _created;
+    genericSubTitle = _director;
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yodas_knowledge/models/generic.model.dart';
+import 'package:yodas_knowledge/pages/details/generic.page.dart';
+import 'package:yodas_knowledge/shared/constants.dart';
 
 class CardComponent extends StatelessWidget {
   final String _imagePath;
@@ -31,11 +33,16 @@ class CardComponent extends StatelessWidget {
                       color: Colors.white,
                       fontSize: 13.0,
                       fontStyle: FontStyle.normal,
-                      fontFamily: 'Starjedi',
+                      fontFamily: FONT_FAMILY,
                     )),
               )),
         ),
-        onPressed: () => print("Click"),
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => GenericPage(this._genericModel)));
+        }
       ),
     );
   }

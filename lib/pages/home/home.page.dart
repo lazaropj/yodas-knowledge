@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:yodas_knowledge/models/category.model.dart';
 import 'package:yodas_knowledge/pages/root.page.dart';
 import 'package:yodas_knowledge/pages/stores/home.store.dart';
+import 'package:yodas_knowledge/shared/constants.dart';
 import 'package:yodas_knowledge/shared/custom_dio/custom_dio.dart';
 
 class Home extends StatefulWidget {
@@ -19,10 +20,10 @@ class _HomeState extends State<Home> {
   Future<List<CategoryModel>> getCategory() async {
     if (categorys.isEmpty) {
       try {
-        var dio = new CustomDio();
+        var dio = new CustomDio(BASE_URL);
         var response = await dio.get("/");
         response.data.forEach((key, value) {
-          categorys.add(CategoryModel(title: key, image: value));
+          categorys.add(CategoryModel(title: key, image: key));
         });
       } on DioError catch (error) {
         throw (error);
@@ -89,7 +90,7 @@ class _HomeState extends State<Home> {
 
 Widget Card(BuildContext context, CategoryModel category) {
   return Container(
-    height: 200.0,
+    height: 180.0,
     width: MediaQuery.of(context).size.width,
     alignment: Alignment.center,
     margin: EdgeInsets.all(8.0),
@@ -106,10 +107,10 @@ Widget Card(BuildContext context, CategoryModel category) {
                 FadeInImage(
                   fit: BoxFit.fill,
                   width: MediaQuery.of(context).size.width,
-                  image: NetworkImage(
+                  image: AssetImage(
                     category.image,
                   ),
-                  placeholder: AssetImage('assets/images/starships.jpg'),
+                  placeholder: AssetImage(category.image),
                 ),
                 Opacity(
                   opacity: 0.6,
@@ -125,7 +126,7 @@ Widget Card(BuildContext context, CategoryModel category) {
                         '${category.title}',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18.0,
+                          fontSize: 35.0,
                           fontStyle: FontStyle.normal,
                         ),
                       ),

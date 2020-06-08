@@ -43,8 +43,14 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
-    - assets/images/starships.jpg
+    - assets/images/starships_background.jpg
     - assets/images/cards_background.jpg
+    - assets/images/character.jpg
+    - assets/images/films.jpg
+    - assets/images/planets.jpg
+    - assets/images/species.jpg
+    - assets/images/starships.jpg
+    - assets/images/vehicles.jpg
   fonts:
     - family: Starjedi
       fonts:

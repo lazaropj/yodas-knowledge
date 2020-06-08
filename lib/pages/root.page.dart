@@ -8,8 +8,8 @@ import 'package:yodas_knowledge/models/people.model.dart';
 import 'package:yodas_knowledge/models/planet.model.dart';
 import 'package:yodas_knowledge/models/specie.model.dart';
 import 'package:yodas_knowledge/models/starship.model.dart';
+import 'package:yodas_knowledge/shared/constants.dart';
 import 'package:yodas_knowledge/shared/custom_dio/custom_dio.dart';
-
 
 class RootPage extends StatefulWidget {
   CategoryModel categoryModel;
@@ -37,7 +37,7 @@ class _RootPageState extends State<RootPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(this.categoryModel.title.toString()),
+          title: Text(this.categoryModel.title),
         ),
         body: Container(
             child: FutureBuilder(
@@ -47,7 +47,8 @@ class _RootPageState extends State<RootPage> {
               return GridView.count(
                 crossAxisCount: 2,
                 children: List.generate(cards.length, (index) {
-                  return CardComponent("assets/images/cards_background.jpg", cards[index]);
+                  return CardComponent(
+                      "assets/images/cards_background.jpg", cards[index]);
                 }),
               );
             } else {
@@ -98,7 +99,7 @@ class _RootPageState extends State<RootPage> {
 
   Future<List> getModels(String category) async {
     try {
-      var dio = new CustomDio();
+      var dio = new CustomDio(BASE_URL);
       var response = await dio.get("/" + category + "/");
       return response.data["results"];
     } on DioError catch (error) {
