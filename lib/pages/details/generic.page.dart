@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yodas_knowledge/models/generic.model.dart';
 import 'package:yodas_knowledge/pages/details/film.page.dart';
+import 'package:yodas_knowledge/pages/details/people.page.dart';
 
 class GenericPage extends StatelessWidget {
   GenericModel _model;
@@ -11,6 +12,7 @@ class GenericPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var page = generateDetailComponent(this._model);
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
@@ -21,10 +23,15 @@ class GenericPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Container(
-              child: Image.network ("https://starwars-visualguide.com/assets/img/characters/2.jpg"),
+              child: SizedBox(
+                width: 600,
+                height: 400,
+                child: Image.network (this._imageUrl),
+              )
+              ,
             ),
             Container(
-              child: generateDetailComponent(this._model),
+              child: page,
             )
           ],
         ),
@@ -32,13 +39,16 @@ class GenericPage extends StatelessWidget {
     ));
   }
 
-  generateDetailComponent(GenericModel model) {
+  StatelessWidget generateDetailComponent(GenericModel model) {
     var runtimeType = _model.runtimeType.toString();
 
     if (runtimeType == "FilmModel") {
       this._imageUrl = this._imageUrl + "films/" + model.id.toString() + ".jpg";
+      print(this._imageUrl);
       return FilmPage(model);
     } else if (runtimeType == "PeopleModel") {
+      this._imageUrl = this._imageUrl + "characters/" + model.id.toString() + ".jpg";
+      return PeoplePage(model);
     } else if (runtimeType == "PlanetModel") {
     } else if (runtimeType == "SpecieModel") {
     } else if (runtimeType == "StarshipModel") {

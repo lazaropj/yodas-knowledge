@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yodas_knowledge/models/film.model.dart';
+import 'package:yodas_knowledge/models/people.model.dart';
 
-class FilmPage extends StatelessWidget {
+class PeoplePage extends StatelessWidget {
 
-  FilmModel _model;
-  FilmPage(FilmModel model){
+  PeopleModel _model;
+  PeoplePage(PeopleModel model){
     this._model = model;
   }
 
@@ -15,10 +16,10 @@ class FilmPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Container(
-            child: Text("Title: ${this._model.title}")
+            child: Text("Name: ${this._model.name}")
           ),
           Container(
-              child: Text("Director: ${this._model.director}")
+              child: Text("Gender: ${this._model.gender}")
           )
         ],
       ),
