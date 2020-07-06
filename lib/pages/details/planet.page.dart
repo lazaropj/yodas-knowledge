@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yodas_knowledge/models/film.model.dart';
-import 'package:yodas_knowledge/models/people.model.dart';
+import 'package:yodas_knowledge/models/planet.model.dart';
 
-class PeoplePage extends StatelessWidget {
+class PlanetPage extends StatelessWidget {
 
-  PeopleModel _model;
-  PeoplePage(PeopleModel model){
+  PlanetModel _model;
+  PlanetPage(PlanetModel model){
     this._model = model;
   }
 
@@ -19,7 +18,7 @@ class PeoplePage extends StatelessWidget {
             child: Text("Name: ${this._model.name}")
           ),
           Container(
-              child: Text("Gender: ${this._model.gender}")
+              child: Text("Population: ${this._model.population}")
           )
         ],
       ),

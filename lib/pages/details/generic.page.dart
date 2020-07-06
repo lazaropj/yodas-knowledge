@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yodas_knowledge/models/generic.model.dart';
+import 'package:yodas_knowledge/models/planet.model.dart';
 import 'package:yodas_knowledge/pages/details/film.page.dart';
 import 'package:yodas_knowledge/pages/details/people.page.dart';
+import 'package:yodas_knowledge/pages/details/planet.page.dart';
 
 class GenericPage extends StatelessWidget {
   GenericModel _model;
@@ -44,12 +46,13 @@ class GenericPage extends StatelessWidget {
 
     if (runtimeType == "FilmModel") {
       this._imageUrl = this._imageUrl + "films/" + model.id.toString() + ".jpg";
-      print(this._imageUrl);
       return FilmPage(model);
     } else if (runtimeType == "PeopleModel") {
       this._imageUrl = this._imageUrl + "characters/" + model.id.toString() + ".jpg";
       return PeoplePage(model);
     } else if (runtimeType == "PlanetModel") {
+      this._imageUrl = this._imageUrl + "planets/" + model.id.toString() + ".jpg";
+      return PlanetPage(model);
     } else if (runtimeType == "SpecieModel") {
     } else if (runtimeType == "StarshipModel") {
     } else if (runtimeType == "VehicleModel") {}
