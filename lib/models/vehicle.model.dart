@@ -129,6 +129,8 @@ class VehicleModel extends GenericModel {
 
   @override
   void populateGenericModel() {
+    String number =  _url.substring(30).replaceFirst("/", "");
+    id = int.parse(number);
     genericTitle = _name;
     genericSubTitle = "Model: " + _model;
   }

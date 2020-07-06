@@ -122,6 +122,8 @@ class SpecieModel extends GenericModel {
 
   @override
   void populateGenericModel() {
+    String number =  _url.substring(29).replaceFirst("/", "");
+    id = int.parse(number);
     genericTitle = _name;
     genericSubTitle = "Language: " + _language;
   }

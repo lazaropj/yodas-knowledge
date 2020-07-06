@@ -4,6 +4,9 @@ import 'package:yodas_knowledge/models/planet.model.dart';
 import 'package:yodas_knowledge/pages/details/film.page.dart';
 import 'package:yodas_knowledge/pages/details/people.page.dart';
 import 'package:yodas_knowledge/pages/details/planet.page.dart';
+import 'package:yodas_knowledge/pages/details/specie.page.dart';
+import 'package:yodas_knowledge/pages/details/starships.page.dart';
+import 'package:yodas_knowledge/pages/details/vehicle.page.dart';
 
 class GenericPage extends StatelessWidget {
   GenericModel _model;
@@ -54,7 +57,14 @@ class GenericPage extends StatelessWidget {
       this._imageUrl = this._imageUrl + "planets/" + model.id.toString() + ".jpg";
       return PlanetPage(model);
     } else if (runtimeType == "SpecieModel") {
+      this._imageUrl = this._imageUrl + "species/" + model.id.toString() + ".jpg";
+      return SpeciePage(model);
     } else if (runtimeType == "StarshipModel") {
-    } else if (runtimeType == "VehicleModel") {}
+      this._imageUrl = this._imageUrl + "starships/" + model.id.toString() + ".jpg";
+      return StarshipsPage(model);
+    } else if (runtimeType == "VehicleModel") {
+      this._imageUrl = this._imageUrl + "vehicles/" + model.id.toString() + ".jpg";
+      return VehiclePage(model);
+    }
   }
 }
